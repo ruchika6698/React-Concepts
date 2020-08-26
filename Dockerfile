@@ -1,17 +1,20 @@
 # base image
-FROM node:latest
+FROM node
 
 # set working directory
-RUN mkdir /Users/boss/demoofconcepts
+RUN mkdir /usr/src/demoofconcepts
 # copy all file to corrent directory
-COPY . /Users/boss/demoofconcepts
+COPY . /usr/src/demoofconcepts
 
-WORKDIR /Users/boss/demoofconcepts
+WORKDIR /usr/src/demoofconcepts
+# add path
+ENV PATH /usr/src/demoofconcepts/node_modules/.bin:$PATH
 
+RUN npm install node-sass
 RUN npm install
 
-ADD /Users/boss/demoofconcepts
+# ADD /usr/src/demoofconcepts
 
-RUN npm build
+# RUN npm build
 
 CMD npm start
